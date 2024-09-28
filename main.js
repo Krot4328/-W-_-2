@@ -31,6 +31,10 @@ document.getElementById('button1').addEventListener('click', task1);
 function formatPhone(phone) {
     if (phone.startsWith('+380')) {
         phone = phone.slice(3);
+    } else if (phone.startsWith('380')) {
+        phone = phone.slice(2);
+    } else if (phone.startsWith('80')) {
+        phone = phone.slice(1);
     } else if (phone.startsWith('0')) {
         phone = phone.slice(0);
     }
@@ -38,18 +42,18 @@ function formatPhone(phone) {
     if (phone.length === 10) {
         return `+38 (${phone.slice(0, 3)}) ${phone.slice(3, 6)}-${phone.slice(6, 8)}-${phone.slice(8, 10)}`;
     } else {
-        return 'Неправильний формат номера. Введіть номер у форматі +380XXXXXXXXX або 0XXXXXXXXX.';
+        return 'Неправильний формат номера. Введіть номер у форматі +380XXXXXXXXX, 380XXXXXXXXX, 80XXXXXXXXX або 0XXXXXXXXX.';
     }
 }
 
 function task2() {
-    const phone = prompt('Введіть номер телефону у форматі +380XXXXXXXXX або 0XXXXXXXXX:');
+    const phone = prompt('Введіть номер телефону у форматі +380XXXXXXXXX, 380XXXXXXXXX, 80XXXXXXXXX або 0XXXXXXXXX:');
 
-    if ((phone.startsWith('+380') && phone.length === 13) || (phone.startsWith('0') && phone.length === 10)) {
+    if ((phone.startsWith('+380') && phone.length === 13) || (phone.startsWith('380') && phone.length === 12) || (phone.startsWith('80') && phone.length === 11) || (phone.startsWith('0') && phone.length === 10)) {
         const formattedPhone = formatPhone(phone);
         console.log(`Введений номер телефону: ${formattedPhone}`);
     } else {
-        console.log('Неправильний формат номера. Введіть номер у форматі +380XXXXXXXXX або 0XXXXXXXXX.');
+        console.log('Неправильний формат номера. Введіть номер у форматі +380XXXXXXXXX, 380XXXXXXXXX, 80XXXXXXXXX або 0XXXXXXXXX.');
     }
 }
 
